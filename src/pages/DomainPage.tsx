@@ -1,5 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
+import { ChevronDown } from 'lucide-react';
 import domainsData from '../data/domains.json';
 import type { Domain, ObjectiveResponse } from '../types';
 import { useAssessment } from '../store/AssessmentContext';
@@ -15,6 +16,11 @@ export default function DomainPage() {
 
   const [tab, setTab] = useState<'assessment' | 'planning'>('assessment');
   const showPlanning = tab === 'planning';
+  const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({});
+
+  const toggleSection = useCallback((sectionId: string) => {
+    setCollapsedSections((prev) => ({ ...prev, [sectionId]: !prev[sectionId] }));
+  }, []);
 
   const { state, getResponse, updateResponse, getDomainScore, getSectionScore, setDomainInUse } =
     useAssessment();
@@ -97,10 +103,20 @@ export default function DomainPage() {
       {/* Sections */}
       {domain.sections.map((section) => {
         const secScore = getSectionScore(section);
+        const isCollapsed = collapsedSections[section.id] ?? false;
         return (
           <div key={section.id} className="space-y-3">
-            {/* Section header */}
-            <div className="sticky top-0 z-10 bg-slate-50/95 backdrop-blur-sm border border-slate-200 rounded-xl px-5 py-3 flex flex-col sm:flex-row sm:items-center gap-2 shadow-sm">
+            {/* Section header — clickable to collapse */}
+            <button
+              type="button"
+              onClick={() => toggleSection(section.id)}
+              className="sticky top-0 z-10 w-full bg-slate-50/95 backdrop-blur-sm border border-slate-200 rounded-xl px-5 py-3 flex items-center gap-3 shadow-sm cursor-pointer hover:bg-slate-100/80 transition-colors text-left"
+              aria-expanded={!isCollapsed}
+            >
+              <ChevronDown
+                size={16}
+                className={`text-slate-400 shrink-0 transition-transform duration-200 ${isCollapsed ? '-rotate-90' : ''}`}
+              />
               <div className="flex-1 min-w-0">
                 <h2 className="text-sm font-bold text-slate-700">{section.name}</h2>
               </div>
@@ -112,10 +128,10 @@ export default function DomainPage() {
                   <ProgressBar score={secScore.score} max={secScore.max} />
                 </div>
               </div>
-            </div>
+            </button>
 
-            {/* Objectives */}
-            {section.objectives.map((obj) => (
+            {/* Objectives — collapsible */}
+            {!isCollapsed && section.objectives.map((obj) => (
               <ObjectiveRow
                 key={obj.id}
                 objective={obj}
