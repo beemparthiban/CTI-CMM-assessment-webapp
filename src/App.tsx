@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AssessmentProvider } from './store/AssessmentContext';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
@@ -7,7 +7,7 @@ import PrioritiesPage from './pages/PrioritiesPage';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AssessmentProvider>
         <Routes>
           <Route element={<Layout />}>
@@ -18,6 +18,6 @@ export default function App() {
           </Route>
         </Routes>
       </AssessmentProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
