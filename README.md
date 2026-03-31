@@ -1,73 +1,65 @@
-# React + TypeScript + Vite
+# CTI-CMM Assessment Tool
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web-based assessment tool for the **Cyber Threat Intelligence Capability Maturity Model (CTI-CMM) v1.3**. Evaluate your organization's CTI maturity across 11 domains and 197 objectives with an interactive, self-hosted application.
 
-Currently, two official plugins are available:
+**Live Demo:** [beemparthiban.github.io/CTI-CMM-assessment-webapp](https://beemparthiban.github.io/CTI-CMM-assessment-webapp/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **11 CTI-CMM Domains** — Asset Management, Threat Landscape, Risk Management, Access Management, Situational Awareness, Incident Response, Third-Party Management, Fraud Management, Workforce Management, Architecture & Technology, Program Management
+- **Maturity Scoring** — Rate each objective from 0 (Not Performed) to 3 (Optimized) across three maturity tiers
+- **Dashboard** — Radar chart, bar chart, and domain summary cards showing overall maturity posture
+- **Priority Planning** — Set target scores, impact, level of effort, target dates, and auto-calculated priority rankings (P1–P4)
+- **Collapsible Sections** — Expand/collapse objective groups within each domain
+- **Export / Import** — Save and load assessments as JSON files
+- **Auto-Save** — All data persists in browser localStorage
+- **Fully Client-Side** — No backend, no data leaves your browser
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React 19 + TypeScript
+- Vite
+- Tailwind CSS v4
+- Recharts (charts)
+- React Router v7
+- Lucide React (icons)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```bash
+# Install dependencies
+npm install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Start development server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Production Build
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build
+npm run preview
 ```
+
+## Docker
+
+```bash
+docker build -t cti-cmm-webapp .
+docker run -p 3000:80 cti-cmm-webapp
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+## Deployment
+
+This project includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) that automatically builds and deploys to GitHub Pages on every push to `main`.
+
+## About CTI-CMM
+
+The [Cyber Threat Intelligence Capability Maturity Model (CTI-CMM)](https://cti-cmm.org/) is a community-driven framework that helps organizations assess and improve their cyber threat intelligence capabilities. This tool is based on CTI-CMM v1.3.
+
+## License
+
+This project is provided as-is for educational and assessment purposes.
