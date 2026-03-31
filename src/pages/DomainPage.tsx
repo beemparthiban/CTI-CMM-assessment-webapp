@@ -32,36 +32,36 @@ export default function DomainPage() {
   const inUse = state.domainInUse[domain.id] !== false;
 
   return (
-    <div className="max-w-5xl mx-auto space-y-4">
+    <div className="max-w-5xl mx-auto space-y-5">
       {/* Header */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+      <div className="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="px-2 py-0.5 rounded text-xs font-bold bg-blue-100 text-blue-800">
+              <span className="px-2 py-0.5 rounded-md text-[11px] font-bold bg-brand-50 text-brand-700 ring-1 ring-inset ring-brand-200">
                 Domain {domain.id}
               </span>
-              <span className="px-2 py-0.5 rounded text-xs font-bold bg-gray-100 text-gray-700">
+              <span className="px-2 py-0.5 rounded-md text-[11px] font-bold bg-slate-100 text-slate-600 ring-1 ring-inset ring-slate-200">
                 {domain.nickname}
               </span>
             </div>
-            <h1 className="text-xl font-bold text-gray-900 mt-1">{domain.name}</h1>
+            <h1 className="text-xl font-bold text-slate-900 mt-2">{domain.name}</h1>
           </div>
           <div className="flex items-center gap-4">
             <div className="text-right">
               <div className="flex items-baseline gap-1">
-                <span className="text-2xl font-bold">{score}</span>
-                <span className="text-sm text-gray-500">/ {max}</span>
+                <span className="text-2xl font-bold tabular-nums">{score}</span>
+                <span className="text-sm text-slate-400">/ {max}</span>
               </div>
-              <span className="text-sm font-medium text-gray-500">{pct}%</span>
+              <span className="text-sm font-semibold text-slate-500 tabular-nums">{pct}%</span>
             </div>
             <label className="flex items-center gap-2">
-              <span className="text-sm text-gray-600">In Use</span>
+              <span className="text-sm text-slate-500 font-medium">In Use</span>
               <input
                 type="checkbox"
                 checked={inUse}
                 onChange={() => setDomainInUse(domain.id, !inUse)}
-                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500 h-4 w-4"
+                className="rounded border-slate-300 text-brand-600 focus:ring-brand-500 h-4 w-4"
                 aria-label="Toggle domain in use"
               />
             </label>
@@ -70,23 +70,23 @@ export default function DomainPage() {
         <ProgressBar score={score} max={max} />
 
         {/* Tabs */}
-        <div className="flex gap-1 mt-4 border-b border-gray-200">
+        <div className="flex gap-1 mt-4 border-b border-slate-200">
           <button
             onClick={() => setTab('assessment')}
-            className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors -mb-px ${
+            className={`px-4 py-2 text-sm font-semibold border-b-2 transition-colors -mb-px ${
               tab === 'assessment'
-                ? 'border-blue-600 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700'
+                ? 'border-brand-600 text-brand-600'
+                : 'border-transparent text-slate-400 hover:text-slate-600'
             }`}
           >
             Assessment
           </button>
           <button
             onClick={() => setTab('planning')}
-            className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors -mb-px ${
+            className={`px-4 py-2 text-sm font-semibold border-b-2 transition-colors -mb-px ${
               tab === 'planning'
-                ? 'border-blue-600 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700'
+                ? 'border-brand-600 text-brand-600'
+                : 'border-transparent text-slate-400 hover:text-slate-600'
             }`}
           >
             Planning
@@ -98,14 +98,14 @@ export default function DomainPage() {
       {domain.sections.map((section) => {
         const secScore = getSectionScore(section);
         return (
-          <div key={section.id} className="space-y-2">
+          <div key={section.id} className="space-y-3">
             {/* Section header */}
-            <div className="sticky top-0 z-10 bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 flex flex-col sm:flex-row sm:items-center gap-2">
+            <div className="sticky top-0 z-10 bg-slate-50/95 backdrop-blur-sm border border-slate-200 rounded-xl px-5 py-3 flex flex-col sm:flex-row sm:items-center gap-2 shadow-sm">
               <div className="flex-1 min-w-0">
-                <h2 className="text-sm font-semibold text-gray-800">{section.name}</h2>
+                <h2 className="text-sm font-bold text-slate-700">{section.name}</h2>
               </div>
               <div className="flex items-center gap-3 shrink-0">
-                <span className="text-sm font-medium text-gray-600">
+                <span className="text-sm font-semibold text-slate-500 tabular-nums">
                   {secScore.score} / {secScore.max}
                 </span>
                 <div className="w-32">

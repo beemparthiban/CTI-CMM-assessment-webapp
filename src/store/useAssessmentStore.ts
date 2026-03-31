@@ -79,12 +79,12 @@ export function getStatus(score: number | null, isNA: boolean): string {
 
 export function getStatusColor(status: string): string {
   switch (status) {
-    case 'Not Implemented': return 'bg-red-100 text-red-800';
-    case 'Partially Implemented': return 'bg-orange-100 text-orange-800';
-    case 'Largely Implemented': return 'bg-yellow-100 text-yellow-800';
-    case 'Fully Implemented': return 'bg-green-100 text-green-800';
-    case 'N/A': return 'bg-gray-100 text-gray-600';
-    default: return 'bg-gray-100 text-gray-600';
+    case 'Not Implemented': return 'bg-rose-50 text-rose-700 ring-rose-200';
+    case 'Partially Implemented': return 'bg-amber-50 text-amber-700 ring-amber-200';
+    case 'Largely Implemented': return 'bg-sky-50 text-sky-700 ring-sky-200';
+    case 'Fully Implemented': return 'bg-emerald-50 text-emerald-700 ring-emerald-200';
+    case 'N/A': return 'bg-slate-100 text-slate-500 ring-slate-200';
+    default: return 'bg-slate-100 text-slate-500 ring-slate-200';
   }
 }
 

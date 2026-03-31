@@ -13,10 +13,10 @@ import ProgressBar, { getPctColor } from '../components/ProgressBar';
 const domains = domainsData.domains as Domain[];
 
 function getMaturityTier(pct: number): { label: string; color: string } {
-  if (pct >= 75) return { label: 'CTI3 — Fully Implemented', color: 'text-green-600' };
-  if (pct >= 50) return { label: 'CTI2 — Largely Implemented', color: 'text-yellow-600' };
-  if (pct >= 25) return { label: 'CTI1 — Partial Implementation', color: 'text-orange-500' };
-  return { label: 'CTI0 — No Capability', color: 'text-red-500' };
+  if (pct >= 75) return { label: 'CTI3 — Fully Implemented', color: 'text-emerald-600' };
+  if (pct >= 50) return { label: 'CTI2 — Largely Implemented', color: 'text-sky-600' };
+  if (pct >= 25) return { label: 'CTI1 — Partial Implementation', color: 'text-amber-600' };
+  return { label: 'CTI0 — No Capability', color: 'text-rose-600' };
 }
 
 export default function Dashboard() {
@@ -73,9 +73,9 @@ export default function Dashboard() {
   );
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto">
+    <div className="space-y-8 max-w-7xl mx-auto">
       {/* Header */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
+      <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
@@ -86,33 +86,33 @@ export default function Dashboard() {
                   onChange={(e) => setAssessmentName(e.target.value)}
                   onBlur={() => setEditingName(false)}
                   onKeyDown={(e) => e.key === 'Enter' && setEditingName(false)}
-                  className="text-2xl font-bold text-gray-900 border-b-2 border-blue-400 focus:outline-none bg-transparent"
+                  className="text-2xl font-bold text-slate-900 border-b-2 border-brand-400 focus:outline-none bg-transparent"
                   autoFocus
                 />
               ) : (
                 <h1
-                  className="text-2xl font-bold text-gray-900 cursor-pointer hover:text-blue-600"
+                  className="text-2xl font-bold text-slate-900 cursor-pointer hover:text-brand-600 transition-colors"
                   onClick={() => setEditingName(true)}
                   title="Click to edit"
                 >
                   {state.assessmentName}
                 </h1>
               )}
-              <span className="px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
+              <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-brand-50 text-brand-700 ring-1 ring-inset ring-brand-200 uppercase tracking-wide">
                 v1.3
               </span>
             </div>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-slate-500">
               Cyber Threat Intelligence Capability Maturity Model
             </p>
           </div>
           <div className="text-right">
             <div className="flex items-baseline gap-1 justify-end">
-              <span className="text-4xl font-bold text-gray-900">{overall.score}</span>
-              <span className="text-lg text-gray-500">/ {overall.max}</span>
+              <span className="text-4xl font-bold text-slate-900 tabular-nums">{overall.score}</span>
+              <span className="text-lg text-slate-400">/ {overall.max}</span>
             </div>
             <div className="flex items-center gap-2 justify-end mt-1">
-              <span className={`text-2xl font-bold ${getPctColor(overall.pct)}`}>
+              <span className={`text-2xl font-bold tabular-nums ${getPctColor(overall.pct)}`}>
                 {overall.pct}%
               </span>
             </div>
@@ -124,14 +124,14 @@ export default function Dashboard() {
 
       {/* Empty state */}
       {!hasAnyScores && (
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
-          <h2 className="text-lg font-semibold text-blue-900 mb-2">Start Your Assessment</h2>
-          <p className="text-sm text-blue-700 mb-4">
+        <div className="bg-brand-50 border border-brand-200 rounded-xl p-8 text-center">
+          <h2 className="text-lg font-semibold text-brand-900 mb-2">Start Your Assessment</h2>
+          <p className="text-sm text-brand-700/80 mb-5">
             Begin scoring objectives to see your maturity profile. Click on any domain to get started.
           </p>
           <button
             onClick={() => navigate('/domain/1')}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium"
+            className="px-5 py-2.5 bg-brand-600 text-white rounded-lg hover:bg-brand-700 text-sm font-semibold shadow-sm transition-colors"
           >
             Start with Domain 1 — ASSET
           </button>
@@ -141,8 +141,8 @@ export default function Dashboard() {
       {/* Charts */}
       {hasAnyScores && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
-            <h2 className="text-sm font-semibold text-gray-700 mb-3">Maturity Radar</h2>
+          <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+            <h2 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Maturity Radar</h2>
             <ResponsiveContainer width="100%" height={320}>
               <RadarChart data={radarData}>
                 <PolarGrid />
@@ -150,24 +150,24 @@ export default function Dashboard() {
                 <PolarRadiusAxis angle={90} domain={[0, 100]} tick={{ fontSize: 10 }} />
                 <Radar
                   dataKey="value"
-                  stroke="rgb(59, 130, 246)"
-                  fill="rgba(59, 130, 246, 0.3)"
+                  stroke="rgb(99, 102, 241)"
+                  fill="rgba(99, 102, 241, 0.15)"
                   fillOpacity={0.6}
                 />
               </RadarChart>
             </ResponsiveContainer>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
-            <h2 className="text-sm font-semibold text-gray-700 mb-3">Domain Scores</h2>
+          <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+            <h2 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Domain Scores</h2>
             <ResponsiveContainer width="100%" height={320}>
               <BarChart data={barData} layout="vertical" margin={{ left: 10 }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis type="number" domain={[0, 'dataMax']} />
                 <YAxis type="category" dataKey="name" width={90} tick={{ fontSize: 11 }} />
                 <Tooltip />
-                <Bar dataKey="max" fill="#e5e7eb" radius={[0, 4, 4, 0]} />
-                <Bar dataKey="score" fill="rgb(59, 130, 246)" radius={[0, 4, 4, 0]} />
+                <Bar dataKey="max" fill="#e2e8f0" radius={[0, 4, 4, 0]} />
+                <Bar dataKey="score" fill="rgb(99, 102, 241)" radius={[0, 4, 4, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -175,33 +175,33 @@ export default function Dashboard() {
       )}
 
       {/* Domain table */}
-      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="bg-gray-50 border-b border-gray-200">
+            <thead className="bg-slate-50/80 border-b border-slate-200">
               <tr>
-                <th className="text-left px-4 py-3 font-medium text-gray-600">#</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-600">Domain</th>
-                <th className="text-right px-4 py-3 font-medium text-gray-600">Score</th>
-                <th className="text-right px-4 py-3 font-medium text-gray-600">Max</th>
-                <th className="text-right px-4 py-3 font-medium text-gray-600">%</th>
-                <th className="text-center px-4 py-3 font-medium text-gray-600">In Use</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide">#</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide">Domain</th>
+                <th className="text-right px-4 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide">Score</th>
+                <th className="text-right px-4 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide">Max</th>
+                <th className="text-right px-4 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide">%</th>
+                <th className="text-center px-4 py-3 font-semibold text-slate-500 text-xs uppercase tracking-wide">In Use</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-slate-100">
               {domainScores.map(({ domain, score, max, pct, inUse }) => (
                 <tr
                   key={domain.id}
-                  className="hover:bg-gray-50 cursor-pointer"
+                  className="hover:bg-slate-50/60 cursor-pointer transition-colors"
                   onClick={() => handleNavigate(domain.id)}
                 >
-                  <td className="px-4 py-3 text-gray-500">{domain.id}</td>
+                  <td className="px-4 py-3 text-slate-400 font-medium">{domain.id}</td>
                   <td className="px-4 py-3">
-                    <span className="font-medium text-gray-900">{domain.nickname}</span>
-                    <span className="text-gray-500 ml-2 hidden sm:inline">{domain.name}</span>
+                    <span className="font-semibold text-slate-800">{domain.nickname}</span>
+                    <span className="text-slate-400 ml-2 hidden sm:inline">{domain.name}</span>
                   </td>
-                  <td className="px-4 py-3 text-right font-mono">{score}</td>
-                  <td className="px-4 py-3 text-right font-mono text-gray-500">{max}</td>
+                  <td className="px-4 py-3 text-right font-mono tabular-nums font-medium">{score}</td>
+                  <td className="px-4 py-3 text-right font-mono tabular-nums text-slate-400">{max}</td>
                   <td className={`px-4 py-3 text-right font-semibold ${getPctColor(pct)}`}>
                     {pct}%
                   </td>
@@ -210,7 +210,7 @@ export default function Dashboard() {
                       type="checkbox"
                       checked={inUse}
                       onChange={() => setDomainInUse(domain.id, !inUse)}
-                      className="rounded border-gray-300 text-blue-600 focus:ring-blue-500 h-4 w-4"
+                      className="rounded border-slate-300 text-brand-600 focus:ring-brand-500 h-4 w-4"
                       aria-label={`Toggle ${domain.nickname} in use`}
                     />
                   </td>

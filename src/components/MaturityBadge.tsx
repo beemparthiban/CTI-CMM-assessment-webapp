@@ -1,14 +1,14 @@
 const colorMap: Record<string, string> = {
-  CTI0: 'bg-red-500 text-white',
-  CTI1: 'bg-orange-400 text-white',
-  CTI2: 'bg-yellow-400 text-gray-900',
-  CTI3: 'bg-green-500 text-white',
+  CTI0: 'bg-rose-100 text-rose-700 ring-rose-200',
+  CTI1: 'bg-amber-100 text-amber-700 ring-amber-200',
+  CTI2: 'bg-sky-100 text-sky-700 ring-sky-200',
+  CTI3: 'bg-emerald-100 text-emerald-700 ring-emerald-200',
 };
 
 export default function MaturityBadge({ level }: { level: string }) {
-  const color = colorMap[level] ?? 'bg-gray-300 text-gray-800';
+  const color = colorMap[level] ?? 'bg-slate-100 text-slate-600 ring-slate-200';
   return (
-    <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold ${color}`}>
+    <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-semibold ring-1 ring-inset ${color}`}>
       {level}
     </span>
   );

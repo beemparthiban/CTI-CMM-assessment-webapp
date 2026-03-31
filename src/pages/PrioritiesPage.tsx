@@ -7,11 +7,11 @@ import { computePriority, getStatus, getStatusColor } from '../store/useAssessme
 const domains = domainsData.domains as Domain[];
 
 const priorityColors: Record<string, string> = {
-  P1: 'bg-red-100 text-red-800',
-  P2: 'bg-orange-100 text-orange-800',
-  P3: 'bg-yellow-100 text-yellow-800',
-  P4: 'bg-gray-100 text-gray-700',
-  Unset: 'bg-gray-50 text-gray-400',
+  P1: 'bg-rose-50 text-rose-700 ring-rose-200',
+  P2: 'bg-amber-50 text-amber-700 ring-amber-200',
+  P3: 'bg-sky-50 text-sky-700 ring-sky-200',
+  P4: 'bg-slate-100 text-slate-600 ring-slate-200',
+  Unset: 'bg-slate-50 text-slate-400 ring-slate-200',
 };
 
 type SortField = 'priority' | 'domain' | 'currentScore' | 'targetScore' | 'targetDate';
@@ -141,31 +141,31 @@ export default function PrioritiesPage() {
 
   return (
     <div className="max-w-7xl mx-auto space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Priorities</h1>
+      <h1 className="text-2xl font-bold text-slate-900">Priorities</h1>
 
       {/* Summary Cards */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-        <div className="bg-white border border-gray-200 rounded-lg p-3 text-center">
-          <span className="text-2xl font-bold text-gray-900">{summaryStats.total}</span>
-          <p className="text-xs text-gray-500 mt-1">Total Items</p>
+        <div className="bg-white border border-slate-200 rounded-xl p-4 text-center shadow-sm">
+          <span className="text-2xl font-bold text-slate-900 tabular-nums">{summaryStats.total}</span>
+          <p className="text-[10px] text-slate-400 mt-1 font-semibold uppercase tracking-wide">Total Items</p>
         </div>
         {(['P1', 'P2', 'P3', 'P4'] as const).map((p) => (
-          <div key={p} className={`rounded-lg p-3 text-center border ${priorityColors[p]}`}>
-            <span className="text-2xl font-bold">{summaryStats.counts[p]}</span>
-            <p className="text-xs mt-1">{p}</p>
+          <div key={p} className={`rounded-xl p-4 text-center ring-1 ring-inset ${priorityColors[p]}`}>
+            <span className="text-2xl font-bold tabular-nums">{summaryStats.counts[p]}</span>
+            <p className="text-[10px] mt-1 font-semibold uppercase tracking-wide">{p}</p>
           </div>
         ))}
-        <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-center">
-          <span className="text-2xl font-bold text-green-700">{summaryStats.completed}</span>
-          <p className="text-xs text-green-600 mt-1">Completed</p>
+        <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-center">
+          <span className="text-2xl font-bold text-emerald-700 tabular-nums">{summaryStats.completed}</span>
+          <p className="text-[10px] text-emerald-600 mt-1 font-semibold uppercase tracking-wide">Completed</p>
         </div>
       </div>
 
       {/* Empty state */}
       {allItems.length === 0 && (
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
-          <h2 className="text-lg font-semibold text-blue-900 mb-2">No Priorities Set</h2>
-          <p className="text-sm text-blue-700">
+        <div className="bg-brand-50 border border-brand-200 rounded-xl p-8 text-center">
+          <h2 className="text-lg font-semibold text-brand-900 mb-2">No Priorities Set</h2>
+          <p className="text-sm text-brand-700/80">
             Set target scores on objectives in any domain's Planning tab to see them here.
           </p>
         </div>
@@ -176,11 +176,11 @@ export default function PrioritiesPage() {
         <>
           <div className="flex flex-wrap gap-3 items-end">
             <div>
-              <label className="block text-xs font-medium text-gray-600 mb-1">Priority</label>
+              <label className="block text-[10px] font-bold text-slate-500 mb-1 uppercase tracking-wide">Priority</label>
               <select
                 value={filterPriority}
                 onChange={(e) => setFilterPriority(e.target.value as Priority | 'All')}
-                className="px-3 py-1.5 text-sm border border-gray-300 rounded-md"
+                className="px-3 py-1.5 text-sm border border-slate-200 rounded-lg bg-white shadow-sm"
               >
                 <option value="All">All</option>
                 <option value="P1">P1</option>
@@ -190,11 +190,11 @@ export default function PrioritiesPage() {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-medium text-gray-600 mb-1">Domain</label>
+              <label className="block text-[10px] font-bold text-slate-500 mb-1 uppercase tracking-wide">Domain</label>
               <select
                 value={filterDomain}
                 onChange={(e) => setFilterDomain(Number(e.target.value))}
-                className="px-3 py-1.5 text-sm border border-gray-300 rounded-md"
+                className="px-3 py-1.5 text-sm border border-slate-200 rounded-lg bg-white shadow-sm"
               >
                 <option value={0}>All</option>
                 {domains.map((d) => (
@@ -205,11 +205,11 @@ export default function PrioritiesPage() {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-medium text-gray-600 mb-1">Status</label>
+              <label className="block text-[10px] font-bold text-slate-500 mb-1 uppercase tracking-wide">Status</label>
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="px-3 py-1.5 text-sm border border-gray-300 rounded-md"
+                className="px-3 py-1.5 text-sm border border-slate-200 rounded-lg bg-white shadow-sm"
               >
                 <option value="All">All</option>
                 <option value="Not Implemented">Not Implemented</option>
@@ -221,77 +221,76 @@ export default function PrioritiesPage() {
           </div>
 
           {/* Table */}
-          <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                <thead className="bg-gray-50 border-b border-gray-200">
+                <thead className="bg-slate-50/80 border-b border-slate-200">
                   <tr>
                     <th
-                      className="text-left px-3 py-2 font-medium text-gray-600 cursor-pointer hover:text-gray-900"
+                      className="text-left px-3 py-2.5 font-semibold text-slate-500 text-xs uppercase tracking-wide cursor-pointer hover:text-slate-800"
                       onClick={() => handleSort('priority')}
                     >
                       Priority{sortIcon('priority')}
                     </th>
                     <th
-                      className="text-left px-3 py-2 font-medium text-gray-600 cursor-pointer hover:text-gray-900"
+                      className="text-left px-3 py-2.5 font-semibold text-slate-500 text-xs uppercase tracking-wide cursor-pointer hover:text-slate-800"
                       onClick={() => handleSort('domain')}
                     >
                       Domain{sortIcon('domain')}
                     </th>
-                    <th className="text-left px-3 py-2 font-medium text-gray-600">Objective</th>
+                    <th className="text-left px-3 py-2.5 font-semibold text-slate-500 text-xs uppercase tracking-wide">Objective</th>
                     <th
-                      className="text-center px-3 py-2 font-medium text-gray-600 cursor-pointer hover:text-gray-900"
+                      className="text-center px-3 py-2.5 font-semibold text-slate-500 text-xs uppercase tracking-wide cursor-pointer hover:text-slate-800"
                       onClick={() => handleSort('currentScore')}
                     >
                       Current{sortIcon('currentScore')}
                     </th>
                     <th
-                      className="text-center px-3 py-2 font-medium text-gray-600 cursor-pointer hover:text-gray-900"
+                      className="text-center px-3 py-2.5 font-semibold text-slate-500 text-xs uppercase tracking-wide cursor-pointer hover:text-slate-800"
                       onClick={() => handleSort('targetScore')}
                     >
                       Target{sortIcon('targetScore')}
                     </th>
-                    <th className="text-center px-3 py-2 font-medium text-gray-600">Impact</th>
-                    <th className="text-center px-3 py-2 font-medium text-gray-600">LOE</th>
+                    <th className="text-center px-3 py-2.5 font-semibold text-slate-500 text-xs uppercase tracking-wide">Impact</th>
+                    <th className="text-center px-3 py-2.5 font-semibold text-slate-500 text-xs uppercase tracking-wide">LOE</th>
                     <th
-                      className="text-left px-3 py-2 font-medium text-gray-600 cursor-pointer hover:text-gray-900"
+                      className="text-left px-3 py-2.5 font-semibold text-slate-500 text-xs uppercase tracking-wide cursor-pointer hover:text-slate-800"
                       onClick={() => handleSort('targetDate')}
                     >
                       Date{sortIcon('targetDate')}
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
+                <tbody className="divide-y divide-slate-100">
                   {filtered.map((item) => (
-                    <tr key={item.objectiveId} className="hover:bg-gray-50">
-                      <td className="px-3 py-2">
+                    <tr key={item.objectiveId} className="hover:bg-slate-50/60 transition-colors">
+                      <td className="px-3 py-2.5">
                         <span
-                          className={`inline-flex px-2 py-0.5 rounded text-xs font-medium ${priorityColors[item.priority]}`}
-                        >
+                          className={`inline-flex px-2 py-0.5 rounded-md text-xs font-semibold ring-1 ring-inset ${priorityColors[item.priority]}`}>
                           {item.priority}
                         </span>
                       </td>
-                      <td className="px-3 py-2 text-gray-700 font-medium">{item.domainNickname}</td>
-                      <td className="px-3 py-2 text-gray-700 max-w-xs">
+                      <td className="px-3 py-2.5 text-slate-700 font-semibold">{item.domainNickname}</td>
+                      <td className="px-3 py-2.5 text-slate-700 max-w-xs">
                         <p className="line-clamp-2 text-xs">{item.text}</p>
                       </td>
-                      <td className="px-3 py-2 text-center">
+                      <td className="px-3 py-2.5 text-center">
                         <span
-                          className={`inline-flex px-2 py-0.5 rounded text-xs font-medium ${getStatusColor(item.status)}`}
+                          className={`inline-flex px-2 py-0.5 rounded-md text-xs font-semibold ring-1 ring-inset ${getStatusColor(item.status)}`}
                         >
                           {item.currentScore ?? '-'}
                         </span>
                       </td>
-                      <td className="px-3 py-2 text-center font-medium text-gray-700">
+                      <td className="px-3 py-2.5 text-center font-semibold text-slate-700 tabular-nums">
                         {item.targetScore}
                       </td>
-                      <td className="px-3 py-2 text-center text-xs text-gray-600">
+                      <td className="px-3 py-2.5 text-center text-xs text-slate-500">
                         {item.estImpact || '-'}
                       </td>
-                      <td className="px-3 py-2 text-center text-xs text-gray-600">
+                      <td className="px-3 py-2.5 text-center text-xs text-slate-500">
                         {item.estLOE || '-'}
                       </td>
-                      <td className="px-3 py-2 text-xs text-gray-600">
+                      <td className="px-3 py-2.5 text-xs text-slate-500 tabular-nums">
                         {item.targetDate || '-'}
                       </td>
                     </tr>
@@ -300,7 +299,7 @@ export default function PrioritiesPage() {
               </table>
             </div>
             {filtered.length === 0 && (
-              <div className="p-6 text-center text-sm text-gray-500">
+              <div className="p-8 text-center text-sm text-slate-400">
                 No items match the current filters.
               </div>
             )}

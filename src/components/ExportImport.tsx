@@ -54,7 +54,7 @@ export default function ExportImport() {
       )}
       <button
         onClick={handleExport}
-        className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-1 transition-all shadow-sm"
         aria-label="Export assessment as JSON"
       >
         <Download size={14} />
@@ -62,7 +62,7 @@ export default function ExportImport() {
       </button>
       <button
         onClick={handleImport}
-        className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-1 transition-all shadow-sm"
         aria-label="Import assessment from JSON"
       >
         <Upload size={14} />
