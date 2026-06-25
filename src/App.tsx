@@ -4,6 +4,8 @@ import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import DomainPage from './pages/DomainPage';
 import PrioritiesPage from './pages/PrioritiesPage';
+import HistoryPage from './pages/HistoryPage';
+import ComparePage from './pages/ComparePage';
 
 export default function App() {
   return (
@@ -15,6 +17,8 @@ export default function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/domain/:domainId" element={<DomainPage />} />
             <Route path="/priorities" element={<PrioritiesPage />} />
+            <Route path="/history" element={<HistoryPage />} />
+            <Route path="/history/compare" element={<ComparePage />} />
           </Route>
         </Routes>
       </AssessmentProvider>

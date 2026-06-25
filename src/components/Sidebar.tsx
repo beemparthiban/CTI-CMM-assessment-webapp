@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Target, Menu, X, Shield } from 'lucide-react';
+import { LayoutDashboard, Target, Menu, X, Shield, History, GitCompare } from 'lucide-react';
 import { useState } from 'react';
 import { useAssessment } from '../store/AssessmentContext';
 import { getDotColor } from './ProgressBar';
@@ -61,6 +61,18 @@ export default function Sidebar() {
       <NavLink to="/priorities" className={linkClass} onClick={() => setOpen(false)}>
         <Target size={16} />
         Priorities
+      </NavLink>
+
+      <div className="mt-5 mb-1.5 px-3">
+        <span className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest">History</span>
+      </div>
+      <NavLink to="/history" end className={linkClass} onClick={() => setOpen(false)}>
+        <History size={16} />
+        Snapshots
+      </NavLink>
+      <NavLink to="/history/compare" className={linkClass} onClick={() => setOpen(false)}>
+        <GitCompare size={16} />
+        Compare
       </NavLink>
     </nav>
   );

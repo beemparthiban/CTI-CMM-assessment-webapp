@@ -47,3 +47,38 @@ export interface AssessmentState {
 export interface DomainsData {
   domains: Domain[];
 }
+
+export interface Snapshot {
+  id: string;
+  label: string;
+  createdAt: string; // ISO 8601
+  state: AssessmentState;
+}
+
+export interface DomainDiff {
+  domainId: number;
+  name: string;
+  nickname: string;
+  aScore: number;
+  aMax: number;
+  aPct: number;
+  aInUse: boolean;
+  bScore: number;
+  bMax: number;
+  bPct: number;
+  bInUse: boolean;
+  deltaPts: number; // bScore - aScore
+  deltaPct: number; // bPct - aPct
+  scopeChanged: boolean; // inUse differs between A and B
+}
+
+export interface OverallDiff {
+  aScore: number;
+  aMax: number;
+  aPct: number;
+  bScore: number;
+  bMax: number;
+  bPct: number;
+  deltaPts: number;
+  deltaPct: number;
+}
