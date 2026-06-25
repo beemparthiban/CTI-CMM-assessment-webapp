@@ -1086,7 +1086,7 @@
     },
     {
       "id": 9,
-      "name": "8 Workforce Management",
+      "name": "Workforce Management",
       "nickname": "WORKFORCE",
       "maxScore": 69,
       "sections": [
@@ -1250,7 +1250,7 @@
     },
     {
       "id": 10,
-      "name": "9 Cybersecurity Architecture",
+      "name": "Cybersecurity Architecture",
       "nickname": "ARCHITECTURE",
       "maxScore": 39,
       "sections": [
@@ -1354,7 +1354,7 @@
     },
     {
       "id": 11,
-      "name": "10 Cybersecurity Program Management",
+      "name": "Cybersecurity Program Management",
       "nickname": "PROGRAM",
       "maxScore": 33,
       "sections": [
